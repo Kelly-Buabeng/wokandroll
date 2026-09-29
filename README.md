@@ -2,6 +2,24 @@
 
 Website for Wok & Roll, North Legon, Accra. Static HTML, CSS and vanilla JavaScript — no build step.
 
+## Screenshots
+
+**Menu** — category tabs, and add buttons that show how many of each item are in the order.
+
+![Menu section on desktop with category tabs and item quantities](docs/screenshots/menu-desktop.png)
+
+**Order drawer** — edit quantities, choose pickup or delivery, then send the order on WhatsApp.
+
+![Order drawer open on desktop](docs/screenshots/order-drawer-desktop.png)
+
+**Mobile** — hamburger navigation and checkout.
+
+<p>
+  <img src="docs/screenshots/mobile-nav.png" alt="Mobile navigation menu open" width="300">
+  &nbsp;
+  <img src="docs/screenshots/mobile-checkout.png" alt="Mobile checkout with delivery selected" width="300">
+</p>
+
 ## Run it
 
 Open `index.html` in a browser, or serve the folder (recommended, so the map and fonts behave as in production):
