@@ -202,6 +202,12 @@ h2[tabindex="-1"]:focus { outline: none; }
 .pay-notice-badge { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 24px; line-height: 1; }
 .pay-notice h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(22px, 2.6vw, 30px); text-transform: uppercase; line-height: 1; }
 .pay-notice p { margin: 8px 0 0; max-width: 62ch; font-size: 15px; line-height: 1.5; }
+.pay-notice .pay-notice-momo { margin-top: 14px; }
+.momo { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; vertical-align: middle; }
+.momo-label { padding: 3px 8px; border-radius: 999px; background: var(--ink); color: var(--gold); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.momo-number { font-family: var(--mono); font-size: 17px; font-weight: 700; letter-spacing: .04em; white-space: nowrap; }
+.copy-btn { padding: 5px 12px; border: var(--line); border-radius: 999px; background: transparent; cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+.copy-btn:hover, .copy-btn.is-copied { background: var(--ink); color: var(--cream); }
 .pay-notice .pay-notice-pickup { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(22, 17, 13, .25); }
 .order-options { margin: 20px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); gap: 12px; }
 .order-option { padding: 20px; border: 1.5px solid rgba(244, 238, 226, .35); border-radius: 16px; color: var(--cream); display: flex; align-items: center; justify-content: space-between; gap: 10px; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
@@ -269,6 +275,8 @@ html.has-cart body { padding-bottom: 88px; }
 .method-option input:checked + span { background: var(--ink); color: var(--cream); }
 .method-option input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 3px; }
 .pay-reminder { margin: -8px 0 20px; }
+.pay-reminder p { margin: 0; }
+.pay-reminder p + p { margin-top: 10px; }
 .fee-note { margin: 10px 0 20px; font-size: 13px; color: var(--muted); }
 
 .field { margin: 0 0 16px; }
@@ -280,6 +288,22 @@ html.has-cart body { padding-bottom: 88px; }
 .field.has-error input { border-color: var(--accent); background: #FBEDE7; }
 .field-error { margin: 6px 0 0; font-size: 13px; color: var(--accent); }
 .field-error:empty { display: none; }
+
+/* Delivery location section */
+.delivery-location { margin: 4px 0 20px; padding: 18px 18px 4px; border: var(--line); border-radius: 20px; background: #FBF7EF; }
+.delivery-location legend { float: left; width: 100%; margin: 0; padding: 0; font-family: var(--display); font-size: 24px; text-transform: uppercase; line-height: 1; }
+.delivery-location-hint { clear: both; margin: 0; padding: 6px 0 14px; font-size: 13px; color: var(--muted); }
+.delivery-location .field input, .delivery-location .field textarea { background: var(--cream); }
+.locate { margin: 0 0 16px; }
+.locate-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border: var(--line); border-radius: 999px; background: transparent; cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+.locate-btn:hover { background: var(--ink); color: var(--cream); }
+.locate-btn:disabled { opacity: .6; cursor: progress; }
+.locate-btn.is-pinned { background: var(--ink); color: var(--cream); }
+.locate-icon { width: 14px; height: 14px; border-radius: 50% 50% 50% 0; background: var(--accent); transform: rotate(-45deg); box-shadow: inset 0 0 0 4px var(--accent), inset 0 0 0 7px var(--cream); }
+.locate-status { margin: 8px 0 0; font-size: 13px; line-height: 1.5; color: var(--body); }
+.locate-status:empty { display: none; }
+.locate-status a { text-decoration: underline; }
+.link-btn { padding: 0; border: 0; background: none; cursor: pointer; font-size: 13px; color: var(--accent); text-decoration: underline; }
 
 .drawer-foot { position: sticky; bottom: 0; margin: 20px -24px 0; padding: 16px 24px 20px; background: var(--cream); border-top: var(--line); }
 .submit-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 22px; border: 0; border-radius: 999px; background: var(--accent); color: var(--cream); cursor: pointer; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }

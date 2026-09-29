@@ -184,6 +184,7 @@
           <div>
             <h3>Delivery: payment confirms your order</h3>
             <p>Every meal is cooked fresh off the stove, never made ahead. So delivery orders go on the wok once payment is received — that way yours reaches you hot and at its best.</p>
+            <p class="pay-notice-momo">Pay by Mobile Money to <span class="momo"><span class="momo-label">MoMo</span> <span class="momo-number">025 644 9338</span> <button type="button" class="copy-btn" data-copy="0256449338" aria-label="Copy MoMo number 025 644 9338">Copy</button></span></p>
             <p class="pay-notice-pickup"><strong>Picking up?</strong> No need to pay ahead — pay when you collect your order at Residence J Hotel.</p>
           </div>
         </div>
@@ -255,7 +256,10 @@
             <label class="method-option"><input type="radio" name="method" value="delivery"><span>Delivery</span></label>
           </fieldset>
           <p class="fee-note" data-fee-note></p>
-          <p class="notice pay-reminder" data-pay-reminder hidden><strong>Payment confirms delivery orders.</strong> Meals are cooked fresh off the stove, so we start cooking once payment is received.</p>
+          <div class="notice pay-reminder" data-pay-reminder hidden>
+            <p><strong>Payment confirms delivery orders.</strong> Meals are cooked fresh off the stove, so we start cooking once payment is received.</p>
+            <p>Pay by Mobile Money to <span class="momo"><span class="momo-label">MoMo</span> <span class="momo-number">025 644 9338</span> <button type="button" class="copy-btn" data-copy="0256449338" aria-label="Copy MoMo number 025 644 9338">Copy</button></span></p>
+          </div>
 
           <div class="field">
             <label for="order-name">Name</label>
@@ -269,11 +273,37 @@
             <p class="field-error" id="order-phone-error" aria-live="polite"></p>
           </div>
 
-          <div class="field" data-address-field hidden>
-            <label for="order-address">Delivery address</label>
-            <input id="order-address" name="address" type="text" autocomplete="street-address" placeholder="Area, street, landmark" aria-describedby="order-address-error">
-            <p class="field-error" id="order-address-error" aria-live="polite"></p>
-          </div>
+          <!-- Delivery location: only shown (and required) when delivery is selected -->
+          <fieldset class="delivery-location" data-address-field hidden>
+            <legend>Delivery location</legend>
+            <p class="delivery-location-hint">Tell the rider exactly where to find you.</p>
+
+            <div class="field">
+              <label for="order-area">Area</label>
+              <input id="order-area" name="area" type="text" autocomplete="address-level3" placeholder="e.g. Haatso" aria-describedby="order-area-error">
+              <p class="field-error" id="order-area-error" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label for="order-address">House, street &amp; landmark</label>
+              <textarea id="order-address" name="address" rows="2" autocomplete="street-address" placeholder="House no., street, nearest landmark" aria-describedby="order-address-error"></textarea>
+              <p class="field-error" id="order-address-error" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label for="order-gps">GhanaPost GPS <span class="optional">optional</span></label>
+              <input id="order-gps" name="gps" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. GA-183-8164" aria-describedby="order-gps-error">
+              <p class="field-error" id="order-gps-error" aria-live="polite"></p>
+            </div>
+
+            <div class="locate">
+              <button type="button" class="locate-btn" data-locate>
+                <span class="locate-icon" aria-hidden="true"></span>
+                <span data-locate-label>Share my current location</span>
+              </button>
+              <p class="locate-status" data-locate-status aria-live="polite"></p>
+            </div>
+          </fieldset>
 
           <div class="field">
             <label for="order-notes">Notes <span class="optional">optional</span></label>

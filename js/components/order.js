@@ -118,9 +118,12 @@ WR.initOrder = function (cart) {
   var fields = {
     name: form.elements.name,
     phone: form.elements.phone,
+    area: form.elements.area,
     address: form.elements.address,
+    gps: form.elements.gps,
     notes: form.elements.notes,
   };
+  var deliveryFields = ["area", "address", "gps"];
   var addressField = q("[data-address-field]");
 
   function getMethod() {
@@ -136,8 +139,11 @@ WR.initOrder = function (cart) {
   function syncMethod() {
     var delivery = getMethod() === "delivery";
     addressField.hidden = !delivery;
+    fields.area.required = delivery;
     fields.address.required = delivery;
-    if (!delivery) setError(fields.address, "");
+    if (!delivery) {
+      deliveryFields.forEach(function (name) { setError(fields[name], ""); });
+    }
     q("[data-pay-reminder]").hidden = !delivery; // delivery is paid upfront; pickup pays on collection
     q("[data-fee-note]").textContent = delivery
       ? "We'll confirm your total, including the delivery fee, when we reply."
@@ -158,9 +164,18 @@ WR.initOrder = function (cart) {
       var digits = v.replace(/[\s-]/g, "");
       return /^(\+233|0)\d{9}$/.test(digits) ? "" : "Enter a Ghana number, e.g. 024 123 4567.";
     },
+    area: function (v) {
+      if (getMethod() !== "delivery") return "";
+      return v.trim().length >= 2 ? "" : "Which area should we deliver to?";
+    },
     address: function (v) {
       if (getMethod() !== "delivery") return "";
-      return v.trim().length >= 5 ? "" : "Add an area and landmark so the rider can find you.";
+      return v.trim().length >= 5 ? "" : "Add your house, street or a nearby landmark so the rider can find you.";
+    },
+    gps: function (v) {
+      // Optional. GhanaPost GPS digital address, e.g. GA-183-8164 or GA1838164.
+      if (getMethod() !== "delivery" || !v.trim()) return "";
+      return /^[A-Z]{2}-?\d{3,4}-?\d{3,4}$/i.test(v.trim()) ? "" : "Use the GhanaPost GPS format, e.g. GA-183-8164.";
     },
   };
 
@@ -188,6 +203,55 @@ WR.initOrder = function (cart) {
     });
   });
 
+  // --- Share current location (delivery only) ---------------------------
+  var locateBtn = q("[data-locate]");
+  var locateLabel = q("[data-locate-label]");
+  var locateStatus = q("[data-locate-status]");
+  var pin = null; // { lat, lng, accuracy } once shared
+
+  function setPin(next) {
+    pin = next;
+    locateBtn.classList.toggle("is-pinned", !!pin);
+    locateLabel.textContent = pin ? "Update my location" : "Share my current location";
+    locateStatus.replaceChildren();
+    if (!pin) return;
+    // Built with DOM APIs rather than markup: coordinates come from the device.
+    locateStatus.append("Location pinned (within about " + Math.round(pin.accuracy) + " m). ");
+    var view = document.createElement("a");
+    view.href = WR.orderService.mapLink(pin);
+    view.target = "_blank";
+    view.rel = "noopener noreferrer";
+    view.textContent = "Check on map";
+    var remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "link-btn";
+    remove.textContent = "Remove";
+    remove.addEventListener("click", function () {
+      setPin(null);
+      locateStatus.textContent = "Location removed.";
+      locateBtn.focus();
+    });
+    locateStatus.append(view, " · ", remove);
+  }
+
+  if (!("geolocation" in navigator)) {
+    locateBtn.hidden = true;
+  }
+
+  locateBtn.addEventListener("click", function () {
+    locateBtn.disabled = true;
+    locateStatus.textContent = "Finding your location…";
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      locateBtn.disabled = false;
+      setPin({ lat: pos.coords.latitude, lng: pos.coords.longitude, accuracy: pos.coords.accuracy });
+    }, function (err) {
+      locateBtn.disabled = false;
+      locateStatus.textContent = err.code === err.PERMISSION_DENIED
+        ? "Location access was blocked. Type your area and landmark above instead."
+        : "Couldn't get your location. Type your area and landmark above instead.";
+    }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+  });
+
   var lastHandoffUrl = "";
 
   form.addEventListener("submit", function (e) {
@@ -204,7 +268,10 @@ WR.initOrder = function (cart) {
       method: getMethod(),
       name: fields.name.value.trim(),
       phone: fields.phone.value.trim(),
+      area: fields.area.value.trim(),
       address: fields.address.value.trim(),
+      gps: fields.gps.value.trim().toUpperCase(),
+      pin: pin,
       notes: fields.notes.value.trim(),
     };
 
@@ -228,7 +295,8 @@ WR.initOrder = function (cart) {
       count + (count === 1 ? " item · " : " items · ") +
       WR.formatPrice(order.total) + " · " + (order.method === "delivery" ? "Delivery" : "Pickup");
     q("[data-sent-next]").textContent = order.method === "delivery"
-      ? "we'll confirm your total and delivery fee. Your meal goes on the stove as soon as payment is received."
+      ? "we'll confirm your total and delivery fee. Pay by MoMo to " + WR.data.business.momo.display +
+        " — your meal goes on the stove as soon as payment is received."
       : "we'll confirm and start cooking. Pay when you pick up at Residence J Hotel.";
     q("[data-handoff-link]").href = lastHandoffUrl;
     q("[data-handoff-block]").hidden = result.type !== "handoff";
@@ -244,6 +312,7 @@ WR.initOrder = function (cart) {
   q("[data-finish-order]").addEventListener("click", function () {
     cart.clear();
     form.reset();
+    setPin(null);
     syncMethod();
     close();
   });

@@ -33,7 +33,9 @@ It deploys as-is to any static host (GitHub Pages, Netlify, Vercel).
 ## What's interactive
 
 - **Menu** — rendered from data, filterable by category tabs (arrow keys work), with an add button per item that shows the quantity already in the order.
-- **Order drawer** — floating cart bar, quantity steppers, pickup/delivery choice, validated checkout form (Ghana phone format, address required for delivery). The cart survives page reloads.
+- **Order drawer** — floating cart bar, quantity steppers, pickup/delivery choice, validated checkout form (Ghana phone format). The cart survives page reloads.
+- **Delivery location** — for delivery orders: area and house/street/landmark (required), an optional GhanaPost GPS address, and a "Share my current location" button that adds a Google Maps pin to the order. Location access needs HTTPS (fine on any real host) and the visitor's permission.
+- **Payment** — delivery orders are paid upfront by MoMo (number with a copy button); pickup orders pay on collection.
 - **Order hand-off** — submitting opens WhatsApp with the order pre-filled for the customer to send to 025 644 9338.
 - **Open/closed badge** — live, computed on Accra time; the drawer warns if you order outside 9AM–10PM.
 - **Mobile nav** — hamburger menu under 720px; the current section is highlighted as you scroll.
