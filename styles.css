@@ -173,8 +173,10 @@ h2[tabindex="-1"]:focus { outline: none; }
 .sauces .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(244, 238, 226, .75); }
 .sauces h2 { margin: 12px 0 0; font-size: clamp(40px, 7vw, 96px); line-height: .85; }
 .sauces p { margin: 18px 0 26px; max-width: 36ch; font-size: 15px; line-height: 1.55; }
-.sauces-visual { position: relative; display: flex; justify-content: center; }
-.sauces-visual img { display: block; width: min(400px, 80vw); height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; border: 1.5px solid var(--cream); background: var(--ink); }
+.sauces-visual { display: flex; justify-content: center; }
+/* Frame hugs the photo so the sticker is anchored to the image's own corner. */
+.sauces-frame { position: relative; width: min(400px, calc(100% - 40px)); } /* room for the sticker overhang */
+.sauces-visual img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; border: 1.5px solid var(--cream); background: var(--ink); }
 .sticker { position: absolute; top: -28px; right: -28px; width: 104px; height: 104px; border-radius: 50%; background: var(--gold); color: var(--ink); display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; line-height: 1.4; animation: wr-spin 22s linear infinite; }
 
 /* ---------- Find us ---------- */
