@@ -5,16 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wok &amp; Roll — North Legon, Accra</title>
 <meta name="description" content="Wok seared. Beat inspired. Flavor delivered. Rice, noodles and chilli sauces cooked fresh on order in North Legon, Accra. Open daily 9AM–10PM.">
+<meta name="theme-color" content="#F4EEE2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23C2311A'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add("js");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="js/data.js" defer></script>
+<script src="js/cart-store.js" defer></script>
+<script src="js/order-service.js" defer></script>
+<script src="js/components/nav.js" defer></script>
+<script src="js/components/open-status.js" defer></script>
+<script src="js/components/menu.js" defer></script>
+<script src="js/components/order.js" defer></script>
+<script src="js/app.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#menu">Skip to menu</a>
 <div class="page">
 
   <div class="topbar">
-    <span>Open daily · 9AM — 10PM</span>
+    <span class="open-status" data-open-status><span class="status-dot" aria-hidden="true"></span><span data-open-label>Open daily · 9AM — 10PM</span></span>
     <span>Pickup &amp; delivery · North Legon, Accra</span>
     <a href="tel:+233256449338">025 644 9338</a>
   </div>
@@ -24,10 +36,13 @@
       <span class="brand-dot" aria-hidden="true"></span>
       <span class="brand-name">Wok&amp;Roll</span>
     </a>
-    <nav class="site-nav" aria-label="Main">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
       <a href="#menu">Menu</a>
       <a href="#find">Find us</a>
-      <a href="#order" class="nav-cta">Order now →</a>
+      <a href="#order" class="nav-cta" data-open-order>Order now →</a>
     </nav>
   </header>
 
@@ -43,13 +58,13 @@
         <p>Bold flavors. Fresh ingredients. Made for you. Rice, noodles and chilli sauces cooked fresh on order in North Legon — pick up or get it delivered.</p>
         <div class="btn-row">
           <a href="#menu" class="btn btn-accent">See the menu</a>
-          <a href="#order" class="btn btn-outline">Order now</a>
+          <a href="#order" class="btn btn-outline" data-open-order>Order now</a>
         </div>
       </div>
 
       <div class="hero-visual">
         <div class="hero-plate">
-          <img src="https://images.pexels.com/photos/33145258/pexels-photo-33145258.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="Chef tossing noodles in a flaming wok">
+          <img src="https://images.pexels.com/photos/33145258/pexels-photo-33145258.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="Chef tossing noodles in a flaming wok" width="560" height="560" fetchpriority="high">
           <span class="orbit orbit-1">Cooked to order</span>
           <span class="orbit orbit-2">Wok seared</span>
           <span class="orbit orbit-3">From GHS 35</span>
@@ -72,7 +87,7 @@
         <div class="chips">
           <span class="chip">Special Rice without meat</span>
         </div>
-        <img class="fresh-photo" src="https://images.pexels.com/photos/33145257/pexels-photo-33145257.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="Stir-fried noodles in a fiery wok" loading="lazy">
+        <img class="fresh-photo" src="https://images.pexels.com/photos/33145257/pexels-photo-33145257.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="Stir-fried noodles in a fiery wok" width="800" height="600" loading="lazy">
       </div>
 
       <div class="ticket">
@@ -104,44 +119,14 @@
       </div>
     </section>
 
-    <section id="menu" class="menu">
+    <section id="menu" class="menu" aria-labelledby="menu-title">
       <div class="menu-head">
-        <h2>The menu</h2>
+        <h2 id="menu-title">The menu</h2>
         <span class="menu-note">All prices in GHS · cooked fresh on order</span>
       </div>
-      <div class="menu-grid">
-        <div class="menu-cat">
-          <h3><span class="num">01</span><span class="cat-name">Rice</span></h3>
-          <ul>
-            <li class="menu-item"><span class="name">Egg Rice</span><span class="leader"></span><span class="price">GHS 35</span></li>
-            <li class="menu-item"><span class="name">Special Rice (without meat)</span><span class="leader"></span><span class="price">GHS 35</span></li>
-            <li class="menu-item"><span class="name">Special Rice</span><span class="leader"></span><span class="price">GHS 45</span></li>
-            <li class="menu-item"><span class="name">Beef Rice</span><span class="leader"></span><span class="price">GHS 50</span></li>
-            <li class="menu-item"><span class="name">Chicken Rice</span><span class="leader"></span><span class="price">GHS 50</span></li>
-            <li class="menu-item"><span class="name">Assorted Rice</span><span class="leader"></span><span class="price">GHS 70</span></li>
-          </ul>
-        </div>
-        <div class="menu-cat">
-          <h3><span class="num">02</span><span class="cat-name">Noodles</span></h3>
-          <ul>
-            <li class="menu-item"><span class="name">Egg Noodles</span><span class="leader"></span><span class="price">GHS 35</span></li>
-            <li class="menu-item"><span class="name">Beef Noodles</span><span class="leader"></span><span class="price">GHS 50</span></li>
-            <li class="menu-item"><span class="name">Chicken Noodles</span><span class="leader"></span><span class="price">GHS 60</span></li>
-            <li class="menu-item"><span class="name">Assorted Noodles</span><span class="leader"></span><span class="price">GHS 70</span></li>
-            <li class="menu-item"><span class="name">Special Noodles</span><span class="leader"></span><span class="price">GHS 80</span></li>
-          </ul>
-        </div>
-        <div class="menu-cat">
-          <h3><span class="num">03</span><span class="cat-name">Sauces</span></h3>
-          <ul>
-            <li class="menu-item"><span class="name">Gizzard in Chilli</span><span class="leader"></span><span class="price">GHS 45</span></li>
-            <li class="menu-item"><span class="name">Chicken in Oyster Sauce</span><span class="leader"></span><span class="price">GHS 50</span></li>
-            <li class="menu-item"><span class="name">Beef in Oyster Sauce</span><span class="leader"></span><span class="price">GHS 50</span></li>
-            <li class="menu-item"><span class="name">Beef in Chilli</span><span class="leader"></span><span class="price">GHS 55</span></li>
-            <li class="menu-item"><span class="name">Chicken in Chilli</span><span class="leader"></span><span class="price">GHS 55</span></li>
-            <li class="menu-item"><span class="name">Special Sauce</span><span class="leader"></span><span class="price">GHS 80</span></li>
-          </ul>
-        </div>
+      <div class="menu-tabs" role="tablist" aria-label="Menu categories" data-menu-tabs></div>
+      <div id="menu-panel" class="menu-grid" role="tabpanel" data-menu-grid>
+        <noscript><p class="menu-note">Our full menu needs JavaScript. Call <a href="tel:+233256449338">025 644 9338</a> to order.</p></noscript>
       </div>
     </section>
 
@@ -156,7 +141,7 @@
         </div>
       </div>
       <div class="sauces-visual">
-        <img src="https://images.pexels.com/photos/3054690/pexels-photo-3054690.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="Noodles cooking in a flaming wok" loading="lazy">
+        <img src="https://images.pexels.com/photos/3054690/pexels-photo-3054690.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="Noodles cooking in a flaming wok" width="400" height="500" loading="lazy">
         <div class="sticker">Special<br>sauce<br>GHS 80</div>
       </div>
     </section>
@@ -181,6 +166,7 @@
       </div>
       <div class="map">
         <span>Map — North Legon, Accra</span>
+        <iframe title="Map of North Legon, Accra" src="https://maps.google.com/maps?q=North%20Legon%2C%20Accra%2C%20Ghana&amp;z=14&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </section>
 
@@ -191,8 +177,8 @@
           <p>Call ahead and we'll have it hot off the wok when you arrive — or we'll bring it to you.</p>
         </div>
         <div class="order-options">
-          <a href="#order" class="order-option">Pickup <span aria-hidden="true">→</span></a>
-          <a href="#order" class="order-option">Delivery <span aria-hidden="true">→</span></a>
+          <a href="#menu" class="order-option" data-open-order="pickup">Pickup <span aria-hidden="true">→</span></a>
+          <a href="#menu" class="order-option" data-open-order="delivery">Delivery <span aria-hidden="true">→</span></a>
           <a href="tel:+233256449338" class="order-option call">025 644 9338 <span aria-hidden="true">→</span></a>
         </div>
       </div>
@@ -207,7 +193,7 @@
     <div class="footer-info">
       North Legon, Accra · Daily 9AM–10PM<br>
       <a href="tel:+233256449338">025 644 9338</a><br>
-      <a href="https://instagram.com/tastethebeatgh">IG @tastethebeatgh</a> · <a href="https://tiktok.com/@tastethebeatgh1">TikTok @tastethebeatgh1</a>
+      <a href="https://instagram.com/tastethebeatgh" target="_blank" rel="noopener">IG @tastethebeatgh</a> · <a href="https://tiktok.com/@tastethebeatgh1" target="_blank" rel="noopener">TikTok @tastethebeatgh1</a>
     </div>
     <nav class="footer-nav" aria-label="Footer">
       <a href="#menu">Menu</a>
@@ -218,5 +204,103 @@
   </footer>
 
 </div>
+
+<!-- Floating cart bar: appears once something is in the order. -->
+<button type="button" class="cart-bar" data-cart-bar data-open-order hidden>
+  <span>Your order</span>
+  <span class="cart-bar-meta"><span data-cart-count>0 items</span> · <span data-cart-total>GHS 0</span></span>
+  <span aria-hidden="true">→</span>
+</button>
+
+<!-- Order drawer (native <dialog>: focus trap, Escape and inert page for free) -->
+<dialog id="order-drawer" class="drawer" aria-labelledby="drawer-title">
+  <div class="drawer-panel">
+
+    <div class="drawer-view" data-view="checkout">
+      <div class="drawer-head">
+        <h2 id="drawer-title">Your order</h2>
+        <button type="button" class="icon-btn" data-close-drawer aria-label="Close order">×</button>
+      </div>
+
+      <div class="drawer-body">
+        <p class="notice" data-closed-notice hidden>We're closed right now (open daily 9AM–10PM). Send your order anyway and we'll reply when we open.</p>
+
+        <div class="cart-empty" data-cart-empty>
+          <p>Nothing in the wok yet.</p>
+          <a href="#menu" class="btn btn-accent" data-browse-menu>Browse the menu</a>
+        </div>
+
+        <ul class="cart-lines" data-cart-lines></ul>
+
+        <div class="cart-summary" data-cart-summary>
+          <span>Subtotal</span>
+          <span data-subtotal>GHS 0</span>
+        </div>
+
+        <form class="checkout" data-checkout-form novalidate>
+          <fieldset class="method">
+            <legend>How do you want it?</legend>
+            <label class="method-option"><input type="radio" name="method" value="pickup" checked><span>Pickup</span></label>
+            <label class="method-option"><input type="radio" name="method" value="delivery"><span>Delivery</span></label>
+          </fieldset>
+          <p class="fee-note" data-fee-note></p>
+
+          <div class="field">
+            <label for="order-name">Name</label>
+            <input id="order-name" name="name" type="text" autocomplete="name" required aria-describedby="order-name-error">
+            <p class="field-error" id="order-name-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="order-phone">Phone</label>
+            <input id="order-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="024 123 4567" required aria-describedby="order-phone-error">
+            <p class="field-error" id="order-phone-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field" data-address-field hidden>
+            <label for="order-address">Delivery address</label>
+            <input id="order-address" name="address" type="text" autocomplete="street-address" placeholder="Area, street, landmark" aria-describedby="order-address-error">
+            <p class="field-error" id="order-address-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="order-notes">Notes <span class="optional">optional</span></label>
+            <textarea id="order-notes" name="notes" rows="2" placeholder="Extra chilli, no onions…"></textarea>
+          </div>
+
+          <div class="drawer-foot">
+            <button type="submit" class="submit-btn">
+              <span>Send order on WhatsApp</span>
+              <span data-submit-total>GHS 0</span>
+            </button>
+            <p class="foot-note">Opens WhatsApp with your order filled in. Prefer to talk? Call <a href="tel:+233256449338">025 644 9338</a>.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="drawer-view sent" data-view="sent" hidden>
+      <div class="drawer-head">
+        <h2 tabindex="-1" data-sent-title>Almost there</h2>
+        <button type="button" class="icon-btn" data-close-drawer aria-label="Close order">×</button>
+      </div>
+      <div class="drawer-body">
+        <p class="sent-summary" data-sent-summary></p>
+        <div data-handoff-block>
+          <p>We opened WhatsApp with your order. Hit <strong>send</strong> there and we'll confirm it and start cooking.</p>
+          <a class="btn btn-accent" data-handoff-link href="#" target="_blank" rel="noopener">Didn't open? Open WhatsApp</a>
+        </div>
+        <p>Or call us on <a href="tel:+233256449338">025 644 9338</a>.</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-outline" data-edit-order>Edit order</button>
+          <button type="button" class="btn btn-outline" data-finish-order>Done — clear order</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</dialog>
+
+<div id="sr-announcer" class="sr-only" aria-live="polite"></div>
 </body>
 </html>
