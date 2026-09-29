@@ -136,7 +136,7 @@ WR.initOrder = function (cart) {
     if (!delivery) setError(fields.address, "");
     q("[data-fee-note]").textContent = delivery
       ? "Delivery fee is confirmed when we reply."
-      : "Pay when you pick up at North Legon.";
+      : "Pay when you pick up at Residence J Hotel, North Legon.";
   }
 
   form.addEventListener("change", function (e) {

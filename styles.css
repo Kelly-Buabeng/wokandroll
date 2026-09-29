@@ -184,6 +184,8 @@ h2[tabindex="-1"]:focus { outline: none; }
 .find-item { border-top: var(--line); padding-top: 16px; }
 .find-item h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 24px; text-transform: uppercase; }
 .find-item p { margin: 6px 0 0; font-size: 15px; line-height: 1.5; color: var(--body); }
+.directions-link { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.directions-link:hover { color: var(--ink); }
 .map { position: relative; overflow: hidden; min-height: 280px; border-radius: 20px; border: var(--line); background-color: var(--sand); background-image: repeating-linear-gradient(90deg, rgba(22, 17, 13, .10) 0 2px, transparent 2px 12px); display: flex; align-items: center; justify-content: center; text-align: center; }
 .map span { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); max-width: 18ch; line-height: 1.6; }
 /* The striped placeholder stays underneath while the map loads (or if it is blocked). */

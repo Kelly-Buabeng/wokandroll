@@ -16,7 +16,7 @@ WR.orderService = {
       lines.push(l.qty + " × " + l.item.name + " — " + WR.formatPrice(l.lineTotal));
     });
     lines.push("", "Subtotal: " + WR.formatPrice(order.total));
-    lines.push(order.method === "delivery" ? "Delivery to: " + order.address : "Pickup at North Legon");
+    lines.push(order.method === "delivery" ? "Delivery to: " + order.address : "Pickup at Residence J Hotel, North Legon");
     lines.push("Name: " + order.name, "Phone: " + order.phone);
     if (order.notes) lines.push("Notes: " + order.notes);
     return lines.join("\n");

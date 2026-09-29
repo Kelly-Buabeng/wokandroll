@@ -10,7 +10,7 @@ window.WR = window.WR || {};
 WR.data = {
   business: {
     name: "Wok & Roll",
-    location: "North Legon, Accra, Ghana",
+    location: "Residence J Hotel, Naa Shika Ave, Haatso · North Legon, Accra, Ghana",
     phone: {
       display: "025 644 9338",
       tel: "+233256449338",
