@@ -228,7 +228,8 @@ WR.initOrder = function (cart) {
       count + (count === 1 ? " item · " : " items · ") +
       WR.formatPrice(order.total) + " · " + (order.method === "delivery" ? "Delivery" : "Pickup");
     q("[data-sent-next]").textContent = order.method === "delivery"
-      ? "we'll confirm your total and delivery fee. Your meal goes on the stove as soon as payment is received."
+      ? "we'll confirm your total and delivery fee. Pay by MoMo to " + WR.data.business.momo.display +
+        " — your meal goes on the stove as soon as payment is received."
       : "we'll confirm and start cooking. Pay when you pick up at Residence J Hotel.";
     q("[data-handoff-link]").href = lastHandoffUrl;
     q("[data-handoff-block]").hidden = result.type !== "handoff";

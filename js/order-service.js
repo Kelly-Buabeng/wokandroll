@@ -17,7 +17,7 @@ WR.orderService = {
     });
     lines.push("", "Subtotal: " + WR.formatPrice(order.total));
     lines.push(order.method === "delivery"
-      ? "Delivery to: " + order.address + " (I'll pay to confirm)"
+      ? "Delivery to: " + order.address + " (paying by MoMo to " + WR.data.business.momo.display + " to confirm)"
       : "Pickup at Residence J Hotel, North Legon (pay on pickup)");
     lines.push("Name: " + order.name, "Phone: " + order.phone);
     if (order.notes) lines.push("Notes: " + order.notes);

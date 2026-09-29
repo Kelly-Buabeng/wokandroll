@@ -17,6 +17,8 @@ WR.data = {
       // Used for the WhatsApp order hand-off. Assumes the shop phone is on WhatsApp.
       whatsapp: "233256449338",
     },
+    // Delivery orders are paid upfront by Mobile Money; pickup pays on collection.
+    momo: { display: "025 644 9338", number: "0256449338" },
     timeZone: "Africa/Accra",
     hours: { open: 9, close: 22 }, // 24h clock, daily
     currency: "GHS",

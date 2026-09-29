@@ -202,6 +202,12 @@ h2[tabindex="-1"]:focus { outline: none; }
 .pay-notice-badge { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 24px; line-height: 1; }
 .pay-notice h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(22px, 2.6vw, 30px); text-transform: uppercase; line-height: 1; }
 .pay-notice p { margin: 8px 0 0; max-width: 62ch; font-size: 15px; line-height: 1.5; }
+.pay-notice .pay-notice-momo { margin-top: 14px; }
+.momo { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; vertical-align: middle; }
+.momo-label { padding: 3px 8px; border-radius: 999px; background: var(--ink); color: var(--gold); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.momo-number { font-family: var(--mono); font-size: 17px; font-weight: 700; letter-spacing: .04em; white-space: nowrap; }
+.copy-btn { padding: 5px 12px; border: var(--line); border-radius: 999px; background: transparent; cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+.copy-btn:hover, .copy-btn.is-copied { background: var(--ink); color: var(--cream); }
 .pay-notice .pay-notice-pickup { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(22, 17, 13, .25); }
 .order-options { margin: 20px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); gap: 12px; }
 .order-option { padding: 20px; border: 1.5px solid rgba(244, 238, 226, .35); border-radius: 16px; color: var(--cream); display: flex; align-items: center; justify-content: space-between; gap: 10px; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
@@ -269,6 +275,8 @@ html.has-cart body { padding-bottom: 88px; }
 .method-option input:checked + span { background: var(--ink); color: var(--cream); }
 .method-option input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 3px; }
 .pay-reminder { margin: -8px 0 20px; }
+.pay-reminder p { margin: 0; }
+.pay-reminder p + p { margin-top: 10px; }
 .fee-note { margin: 10px 0 20px; font-size: 13px; color: var(--muted); }
 
 .field { margin: 0 0 16px; }
