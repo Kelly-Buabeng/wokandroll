@@ -273,11 +273,37 @@
             <p class="field-error" id="order-phone-error" aria-live="polite"></p>
           </div>
 
-          <div class="field" data-address-field hidden>
-            <label for="order-address">Delivery address</label>
-            <input id="order-address" name="address" type="text" autocomplete="street-address" placeholder="Area, street, landmark" aria-describedby="order-address-error">
-            <p class="field-error" id="order-address-error" aria-live="polite"></p>
-          </div>
+          <!-- Delivery location: only shown (and required) when delivery is selected -->
+          <fieldset class="delivery-location" data-address-field hidden>
+            <legend>Delivery location</legend>
+            <p class="delivery-location-hint">Tell the rider exactly where to find you.</p>
+
+            <div class="field">
+              <label for="order-area">Area</label>
+              <input id="order-area" name="area" type="text" autocomplete="address-level3" placeholder="e.g. Haatso" aria-describedby="order-area-error">
+              <p class="field-error" id="order-area-error" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label for="order-address">House, street &amp; landmark</label>
+              <textarea id="order-address" name="address" rows="2" autocomplete="street-address" placeholder="House no., street, nearest landmark" aria-describedby="order-address-error"></textarea>
+              <p class="field-error" id="order-address-error" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label for="order-gps">GhanaPost GPS <span class="optional">optional</span></label>
+              <input id="order-gps" name="gps" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. GA-183-8164" aria-describedby="order-gps-error">
+              <p class="field-error" id="order-gps-error" aria-live="polite"></p>
+            </div>
+
+            <div class="locate">
+              <button type="button" class="locate-btn" data-locate>
+                <span class="locate-icon" aria-hidden="true"></span>
+                <span data-locate-label>Share my current location</span>
+              </button>
+              <p class="locate-status" data-locate-status aria-live="polite"></p>
+            </div>
+          </fieldset>
 
           <div class="field">
             <label for="order-notes">Notes <span class="optional">optional</span></label>

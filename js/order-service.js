@@ -16,16 +16,26 @@ WR.orderService = {
       lines.push(l.qty + " × " + l.item.name + " — " + WR.formatPrice(l.lineTotal));
     });
     lines.push("", "Subtotal: " + WR.formatPrice(order.total));
-    lines.push(order.method === "delivery"
-      ? "Delivery to: " + order.address + " (paying by MoMo to " + WR.data.business.momo.display + " to confirm)"
-      : "Pickup at Residence J Hotel, North Legon (pay on pickup)");
+    if (order.method === "delivery") {
+      lines.push("Delivery to: " + order.area + " — " + order.address);
+      if (order.gps) lines.push("GhanaPost GPS: " + order.gps);
+      if (order.pin) lines.push("Map pin: " + this.mapLink(order.pin));
+      lines.push("Payment: MoMo to " + WR.data.business.momo.display + " to confirm");
+    } else {
+      lines.push("Pickup at Residence J Hotel, North Legon (pay on pickup)");
+    }
     lines.push("Name: " + order.name, "Phone: " + order.phone);
     if (order.notes) lines.push("Notes: " + order.notes);
     return lines.join("\n");
   },
 
+  /** Google Maps link for a shared location pin. */
+  mapLink: function (pin) {
+    return "https://www.google.com/maps?q=" + pin.lat.toFixed(6) + "," + pin.lng.toFixed(6);
+  },
+
   /**
-   * @param {{lines, total, method, name, phone, address, notes}} order
+   * @param {{lines, total, method, name, phone, area, address, gps, pin, notes}} order
    * @returns {{ type: "handoff", url: string }}
    */
   submitOrder: function (order) {

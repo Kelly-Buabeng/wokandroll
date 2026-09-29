@@ -289,6 +289,22 @@ html.has-cart body { padding-bottom: 88px; }
 .field-error { margin: 6px 0 0; font-size: 13px; color: var(--accent); }
 .field-error:empty { display: none; }
 
+/* Delivery location section */
+.delivery-location { margin: 4px 0 20px; padding: 18px 18px 4px; border: var(--line); border-radius: 20px; background: #FBF7EF; }
+.delivery-location legend { float: left; width: 100%; margin: 0; padding: 0; font-family: var(--display); font-size: 24px; text-transform: uppercase; line-height: 1; }
+.delivery-location-hint { clear: both; margin: 0; padding: 6px 0 14px; font-size: 13px; color: var(--muted); }
+.delivery-location .field input, .delivery-location .field textarea { background: var(--cream); }
+.locate { margin: 0 0 16px; }
+.locate-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border: var(--line); border-radius: 999px; background: transparent; cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+.locate-btn:hover { background: var(--ink); color: var(--cream); }
+.locate-btn:disabled { opacity: .6; cursor: progress; }
+.locate-btn.is-pinned { background: var(--ink); color: var(--cream); }
+.locate-icon { width: 14px; height: 14px; border-radius: 50% 50% 50% 0; background: var(--accent); transform: rotate(-45deg); box-shadow: inset 0 0 0 4px var(--accent), inset 0 0 0 7px var(--cream); }
+.locate-status { margin: 8px 0 0; font-size: 13px; line-height: 1.5; color: var(--body); }
+.locate-status:empty { display: none; }
+.locate-status a { text-decoration: underline; }
+.link-btn { padding: 0; border: 0; background: none; cursor: pointer; font-size: 13px; color: var(--accent); text-decoration: underline; }
+
 .drawer-foot { position: sticky; bottom: 0; margin: 20px -24px 0; padding: 16px 24px 20px; background: var(--cream); border-top: var(--line); }
 .submit-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 22px; border: 0; border-radius: 999px; background: var(--accent); color: var(--cream); cursor: pointer; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
 .submit-btn:hover { background: var(--ink); }
