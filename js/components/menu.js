@@ -13,10 +13,12 @@ WR.initMenu = function (cart) {
   var tabs = [{ id: "all", name: "All" }].concat(menu);
   var activeId = "all";
 
+  var esc = WR.escapeHTML; // every data value below goes through esc()
+
   // --- Tabs --------------------------------------------------------------
   tablist.innerHTML = tabs.map(function (t) {
-    return '<button type="button" role="tab" class="menu-tab" id="tab-' + t.id + '"' +
-      ' data-tab="' + t.id + '" aria-controls="menu-panel">' + t.name + "</button>";
+    return '<button type="button" role="tab" class="menu-tab" id="tab-' + esc(t.id) + '"' +
+      ' data-tab="' + esc(t.id) + '" aria-controls="menu-panel">' + esc(t.name) + "</button>";
   }).join("");
   var tabEls = Array.prototype.slice.call(tablist.querySelectorAll("[role=tab]"));
 
@@ -53,8 +55,8 @@ WR.initMenu = function (cart) {
   // --- Items -------------------------------------------------------------
   grid.innerHTML = menu.map(function (cat) {
     return (
-      '<div class="menu-cat" data-cat="' + cat.id + '">' +
-        '<h3><span class="num">' + cat.num + '</span><span class="cat-name">' + cat.name + "</span></h3>" +
+      '<div class="menu-cat" data-cat="' + esc(cat.id) + '">' +
+        '<h3><span class="num">' + esc(cat.num) + '</span><span class="cat-name">' + esc(cat.name) + "</span></h3>" +
         "<ul>" + cat.items.map(renderItem).join("") + "</ul>" +
       "</div>"
     );
@@ -63,10 +65,10 @@ WR.initMenu = function (cart) {
   function renderItem(item) {
     return (
       '<li class="menu-item">' +
-        '<span class="name">' + item.name + "</span>" +
+        '<span class="name">' + esc(item.name) + "</span>" +
         '<span class="leader" aria-hidden="true"></span>' +
-        '<span class="price">' + WR.formatPrice(item.price) + "</span>" +
-        '<button type="button" class="add-btn" data-add="' + item.id + '" data-name="' + item.name + '"></button>' +
+        '<span class="price">' + esc(WR.formatPrice(item.price)) + "</span>" +
+        '<button type="button" class="add-btn" data-add="' + esc(item.id) + '" data-name="' + esc(item.name) + '"></button>' +
       "</li>"
     );
   }

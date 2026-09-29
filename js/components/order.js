@@ -77,19 +77,23 @@ WR.initOrder = function (cart) {
     summaryEl.hidden = lines.length === 0;
     form.hidden = lines.length === 0;
 
+    // Every data value is escaped: item names may come from an API later.
+    var esc = WR.escapeHTML;
     linesEl.innerHTML = lines.map(function (l) {
+      var name = esc(l.item.name);
+      var id = esc(l.item.id);
       return (
         '<li class="cart-line">' +
           '<div class="cart-line-info">' +
-            '<span class="cart-line-name">' + l.item.name + "</span>" +
-            '<span class="cart-line-price">' + WR.formatPrice(l.item.price) + " each</span>" +
+            '<span class="cart-line-name">' + name + "</span>" +
+            '<span class="cart-line-price">' + esc(WR.formatPrice(l.item.price)) + " each</span>" +
           "</div>" +
-          '<div class="stepper" role="group" aria-label="Quantity of ' + l.item.name + '">' +
-            '<button type="button" data-step="-1" data-id="' + l.item.id + '" aria-label="Remove one ' + l.item.name + '">−</button>' +
-            '<span aria-live="polite">' + l.qty + "</span>" +
-            '<button type="button" data-step="1" data-id="' + l.item.id + '" aria-label="Add one ' + l.item.name + '">+</button>' +
+          '<div class="stepper" role="group" aria-label="Quantity of ' + name + '">' +
+            '<button type="button" data-step="-1" data-id="' + id + '" aria-label="Remove one ' + name + '">−</button>' +
+            '<span aria-live="polite">' + esc(l.qty) + "</span>" +
+            '<button type="button" data-step="1" data-id="' + id + '" aria-label="Add one ' + name + '">+</button>' +
           "</div>" +
-          '<span class="cart-line-total">' + WR.formatPrice(l.lineTotal) + "</span>" +
+          '<span class="cart-line-total">' + esc(WR.formatPrice(l.lineTotal)) + "</span>" +
         "</li>"
       );
     }).join("");
@@ -206,7 +210,7 @@ WR.initOrder = function (cart) {
     var result = WR.orderService.submitOrder(order);
     if (result.type === "handoff") {
       lastHandoffUrl = result.url;
-      window.open(result.url, "_blank", "noopener");
+      window.open(result.url, "_blank", "noopener,noreferrer");
     }
     showSent(order, result);
   });

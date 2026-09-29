@@ -64,6 +64,17 @@ WR.data = {
   ],
 };
 
+/**
+ * Escapes text for safe use inside HTML markup and attribute values.
+ * Use it for every data value interpolated into an innerHTML template, so the
+ * templates stay safe when the menu later comes from an API or CMS.
+ */
+WR.escapeHTML = function (value) {
+  return String(value).replace(/[&<>"']/g, function (ch) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
+  });
+};
+
 /** Formats a number as a price label, e.g. 35 → "GHS 35". */
 WR.formatPrice = function (amount) {
   return WR.data.business.currency + " " + amount.toLocaleString("en-GH");
