@@ -179,6 +179,14 @@
           <h2>Pickup or<br>delivery</h2>
           <p>Call ahead and we'll have it hot off the wok when you arrive — or we'll bring it to you.</p>
         </div>
+        <div class="pay-notice" role="note">
+          <span class="pay-notice-badge" aria-hidden="true">₵</span>
+          <div>
+            <h3>Delivery: payment confirms your order</h3>
+            <p>Every meal is cooked fresh off the stove, never made ahead. So delivery orders go on the wok once payment is received — that way yours reaches you hot and at its best.</p>
+            <p class="pay-notice-pickup"><strong>Picking up?</strong> No need to pay ahead — pay when you collect your order at Residence J Hotel.</p>
+          </div>
+        </div>
         <div class="order-options">
           <a href="#menu" class="order-option" data-open-order="pickup">Pickup <span aria-hidden="true">→</span></a>
           <a href="#menu" class="order-option" data-open-order="delivery">Delivery <span aria-hidden="true">→</span></a>
@@ -247,6 +255,7 @@
             <label class="method-option"><input type="radio" name="method" value="delivery"><span>Delivery</span></label>
           </fieldset>
           <p class="fee-note" data-fee-note></p>
+          <p class="notice pay-reminder" data-pay-reminder hidden><strong>Payment confirms delivery orders.</strong> Meals are cooked fresh off the stove, so we start cooking once payment is received.</p>
 
           <div class="field">
             <label for="order-name">Name</label>
@@ -290,7 +299,7 @@
       <div class="drawer-body">
         <p class="sent-summary" data-sent-summary></p>
         <div data-handoff-block>
-          <p>We opened WhatsApp with your order. Hit <strong>send</strong> there and we'll confirm it and start cooking.</p>
+          <p>We opened WhatsApp with your order. Hit <strong>send</strong> there, then <span data-sent-next></span></p>
           <a class="btn btn-accent" data-handoff-link href="#" target="_blank" rel="noopener noreferrer">Didn't open? Open WhatsApp</a>
         </div>
         <p>Or call us on <a href="tel:+233256449338">025 644 9338</a>.</p>

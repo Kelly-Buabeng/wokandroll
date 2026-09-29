@@ -138,8 +138,9 @@ WR.initOrder = function (cart) {
     addressField.hidden = !delivery;
     fields.address.required = delivery;
     if (!delivery) setError(fields.address, "");
+    q("[data-pay-reminder]").hidden = !delivery; // delivery is paid upfront; pickup pays on collection
     q("[data-fee-note]").textContent = delivery
-      ? "Delivery fee is confirmed when we reply."
+      ? "We'll confirm your total, including the delivery fee, when we reply."
       : "Pay when you pick up at Residence J Hotel, North Legon.";
   }
 
@@ -226,6 +227,9 @@ WR.initOrder = function (cart) {
     q("[data-sent-summary]").textContent =
       count + (count === 1 ? " item · " : " items · ") +
       WR.formatPrice(order.total) + " · " + (order.method === "delivery" ? "Delivery" : "Pickup");
+    q("[data-sent-next]").textContent = order.method === "delivery"
+      ? "we'll confirm your total and delivery fee. Your meal goes on the stove as soon as payment is received."
+      : "we'll confirm and start cooking. Pay when you pick up at Residence J Hotel.";
     q("[data-handoff-link]").href = lastHandoffUrl;
     q("[data-handoff-block]").hidden = result.type !== "handoff";
     showView("sent");
